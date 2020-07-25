@@ -7,13 +7,13 @@ Created on Wed Jun 17 10:27:38 2020
 
 
 # Import libraries
-from flask import Flask, jsonify
+#from flask import Flask, jsonify
 import json
 import hashlib
 import datetime
 from urllib.parse import urlparse
 import requests
-import api
+#import api
 
 # Building our blockchain
 
@@ -56,7 +56,9 @@ class Blockchain:
             'amount': amount,
         })
         
-        return self.previous_block['index'] + 1
+        
+        previous_block = self.previous_block()
+        return previous_block['index'] + 1 
     
     
     def new_node(self, address):

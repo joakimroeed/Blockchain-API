@@ -8,6 +8,7 @@ Created on Wed Jun 17 20:13:35 2020
 
 # Import libraries
 from flask import Flask, jsonify, request
+from flask import render_template, url_for, redirect
 import json
 import hashlib
 import datetime
@@ -23,7 +24,6 @@ app = Flask(__name__)
 
 # Generate a globally unique address for this node
 node_identifier = str(uuid4()).replace('-', '')
-
 
 # Creating a blockchain
 
@@ -83,6 +83,7 @@ def status():
     return jsonify(response), 200
 
 
+# Used for testing in postman
 @app.route('/transaction', methods = ['POST'])
 def transaction():
     data = request.get_json()
@@ -106,6 +107,29 @@ def transaction():
 
     return jsonify(response), 201
 
+@app.route('/', methods= ['GET'])
+def page():
+    return render_template('index.html')
+
+@app.route('/', methods = ['POST'])
+def index():
+    if request.method == 'POST':
+        
+        sender = request.form['sender']
+        recipient = request.form['recipient']
+        amount = request.form['amount']
+        
+        # Create a new transaction
+        new = blockchain.new_transaction(sender, recipient, amount)
+    
+        response = {
+            'message': f'The new transaction has been added to block {new}'    
+        }
+
+        #return jsonify(response), 201
+        return redirect(url_for('index')) 
+    
+        
 
 app.run(host = '0.0.0.0', port = 5000)
 

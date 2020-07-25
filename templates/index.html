@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    </head>
+    <body>
+        <div class="container">
+            <div class="row">
+                <div class="col-6 mx-auto"> 
+                    <h1 class="display-3">Blockchain API</h1>
+                </div>
+            </div>
+        </div>
+       
+        <div class="container">
+            <div class="row">
+                <div class="col-6 mx-auto">
+
+                    <form method="POST">
+                        <div class="form-group">
+                            <label for="InputSender">Sender</label>
+                            <input type="text" class="form-control" id="InputSender" placeholder="Name" name="sender" value="{{ request.form.get('sender', '') }}"> 
+                        </div>
+                
+                        <div class="form-group">
+                            <label for="InputRecipient">Recipient</label>
+                            <input type="text" class="form-control" id="InputRecipient" placeholder="Name" name="recipient" value="{{ request.form.get('recipient', '') }}"> 
+                        </div>
+                
+                        <div class="form-group">
+                            <label for="InputAmount">Amount</label>
+                            <input type="text" class="form-control" id="InputAmount" placeholder="Name" name="amount" value="{{ request.form.get('amount', '') }}"> 
+                        </div>
+                
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
